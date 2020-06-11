@@ -356,7 +356,11 @@ turnMethods = {
       
       }
 
-      $(this).css({marginLeft: left});
+      if (data.opts.flipalign === "vertical"){
+        $(this).css({marginTop: left});
+      } else {
+        $(this).css({marginLeft: left});
+      }
     }
 
     return this;
@@ -538,6 +542,7 @@ turnMethods = {
         flip({
           page: page,
           next: (odd || single) ? page+1 : page-1,
+          flipalign: data.opts.flipalign,
           turn: this
         }).
         flip('disable', data.disabled);
@@ -1957,11 +1962,27 @@ flipMethods = {
 
   _cornerActivated: function(p) {
 
-    var data = this.data().f,
-      width = this.width(),
-      height = this.height(),
-      point = {x: p.x, y: p.y, corner: ''},
-      csz = data.opts.cornerSize;
+    if (this.data().f.opts.flipalign === "vertical"){
+      var data = this.data().f,
+        pos = data.parent.offset(),
+        width = this.width(),
+        height = this.height(),
+        point = {
+                  x: p.y,
+                  y: Math.max(1, pos.left - p.x - 100),
+                  corner: ''},
+        csz = data.opts.cornerSize;
+    }else{
+      var data = this.data().f,
+        pos = data.parent.offset(),
+        width = this.width(),
+        height = this.height(),
+        point = {
+                  x: p.x,
+                  y: p.y,
+                  corner: ''},
+        csz = data.opts.cornerSize;
+    }
 
     if (point.x<=0 || point.y<=0 || point.x>=width || point.y>=height)
       return false;
@@ -2002,6 +2023,30 @@ flipMethods = {
     return (!point.corner || $.inArray(point.corner, allowedCorners)==-1) ?
       false : point;
 
+  },
+
+  _translateCoordinate: function(e) {
+    if (!e) {
+        return e;
+    }
+    var data = this.data().f;
+    var pos = data.parent.offset();
+
+    if (e.x || e.y){
+      var oldX = e.x - pos.left;
+      var oldY = e.y - pos.top;
+    }else{
+      var oldX = e.pageX - pos.left;
+      var oldY = e.pageY - pos.top;
+    }
+
+    var newX = oldY + pos.left;
+    var newY = this.height() - oldX + pos.top;
+
+    return {
+        pageX: newX,
+        pageY: newY
+    };
   },
 
   _isIArea: function(e) {
@@ -2888,10 +2933,21 @@ flipMethods = {
 
       if (data.corner) {
 
-        var pos = data.parent.offset();
-        data.corner.x = e[0].pageX-pos.left;
-        data.corner.y = e[0].pageY-pos.top;
-        flipMethods._showFoldedPage.call(this, data.corner);
+        if (data.opts.flipalign === "vertical"){
+          let pos = data.parent.offset();
+          let posInNewCoordinate = 
+          flipMethods._translateCoordinate.call(this, e[0]);
+
+          data.corner.x = posInNewCoordinate.pageX - pos.left;
+          data.corner.y = posInNewCoordinate.pageY - pos.top;
+
+          flipMethods._showFoldedPage.call(this, data.corner);
+        } else {
+          var pos = data.parent.offset();
+          data.corner.x = e[0].pageX-pos.left;
+          data.corner.y = e[0].pageY-pos.top;
+          flipMethods._showFoldedPage.call(this, data.corner);
+        } 
 
       } else if (data.hover && !this.data().effect && this.is(':visible')) {
 
