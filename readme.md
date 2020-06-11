@@ -32,10 +32,31 @@
 
 **HTML code:**
 ```html
-<div id="magazine">
-	<div><span class="text">Page 1</span></div>
-	<div><span class="text">Page 2</span></div>
-	<div><span class="text">Page 3</span></div>
+<div id="flipbook">
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
+	<div class="page-wrapper">
+		<div class="page rotate"> <img src="web/img/9c2ceddeafec3b7fc8dc9e8c45c9d186.jpg"/> </div>
+	</div>
 </div>
 ```
 
