@@ -356,11 +356,11 @@ turnMethods = {
       
       }
 
-      if (data.opts.flipalign === "vertical"){
-        $(this).css({marginTop: left});
-      } else {
-        $(this).css({marginLeft: left});
-      }
+      // if (data.opts.flipalign === "vertical"){
+      //   $(this).css({marginTop: left});
+      // } else {
+      //   $(this).css({marginLeft: left});
+      // }
     }
 
     return this;
