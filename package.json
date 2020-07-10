@@ -1,9 +1,9 @@
 {
   "name": "turn.js",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Web page flipper",
   "main": "index.js",
-  "repository": "https://github.com/igghera/turn.js.git",
+  "repository": "https://github.com/clickknock/turn.js.git",
   "author": "Andrea Gherardi <a.gherardi@cantierecreativo.net>",
   "license": "MIT",
   "dependencies": {
