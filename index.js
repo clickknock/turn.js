@@ -457,10 +457,10 @@ var has3d,
           prop.top = (pageHeight - prop.height) / 2;
 
           if (data.direction == "ltr") {
-            prop[odd ? "right" : "left"] = pageWidth - prop.width;
+            prop[odd ? "right" : "left"] = data.opts.product === "list" ? -20 : pageWidth - prop.width;
             prop[odd ? "left" : "right"] = "auto";
           } else {
-            prop[odd ? "left" : "right"] = pageWidth - prop.width;
+            prop[odd ? "left" : "right"] = data.opts.product === "list" ? -20 : pageWidth - prop.width;
             prop[odd ? "right" : "left"] = "auto";
           }
         }
